@@ -36,7 +36,7 @@ $(function () {
             username: $('#form-reg [name=username]').val(),
             password: $('#form-reg [name=password]').val(),
         };
-        $.post("http://ajax.frontend.itheima.net/api/reguser", data, function (res) {
+        $.post("/api/reguser", data, function (res) {
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
@@ -51,7 +51,7 @@ $(function () {
     $("#form_login").on("submit", function (e) {
         e.preventDefault()
         $.ajax({
-            url: 'http://ajax.frontend.itheima.net/api/login',
+            url: '/api/login',
             method: "post",
             // 快速获取当前表单的数据
             data: $(this).serialize(),
