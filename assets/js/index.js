@@ -1,4 +1,4 @@
-
+// 登录请求
 getUserInfo()
 function getUserInfo() {
     $.ajax({

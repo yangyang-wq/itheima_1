@@ -1,0 +1,14 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 15px;
+    background-color: #f2f3f5;
+}
+#form-search{
+    padding-left: 15px;
+}
+#test1{
+    padding-left: 15px;
+}

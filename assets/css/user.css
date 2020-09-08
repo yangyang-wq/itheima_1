@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #f2f3f5;
+    padding:15px;
+}
+.box{
+    background-color: #fff;
+}
+.title{
+   height: 40px;
+    border-bottom: 1px solid #f2f3f5 ;
+   line-height: 40px;
+    padding-left: 10px;
+}
+.layui-form{
+    width: 500px;
+}
