@@ -21,7 +21,7 @@ $(function () {
                     return layui.layer.msg("获取文章列表失败")
                 } else {
                     // layui.layer.msg("获取文章列表成功")
-                    // console.log(res);
+
                     let htmlStr = template('tpl-list', res)
                     $("tbody").html(htmlStr)
                     renderPage(res.total)
@@ -80,10 +80,9 @@ $(function () {
         fn()
     })
 
-    
+
     // 定义渲染分页的方法
     function renderPage(total) {
-        console.log(total);
         layui.use('laypage', function () {
             var laypage = layui.laypage;
             //执行一个laypage实例
@@ -96,7 +95,7 @@ $(function () {
                 limits: [2, 3, 10, 20],
                 jump: function (obj, first) {
                     //obj包含了当前分页的所有参数，比如：
-                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    // console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
                     // console.log(obj.limit); //得到每页显示的条数
                     q.pagenum = obj.curr//把最新的页码值赋值给q.pagenum
                     q.pagesize = obj.limit
@@ -110,47 +109,14 @@ $(function () {
         });
     }
 
-    // let indexEdit = null
-    // // 点击编辑的时候打开弹出层
-    // $("tbody").on("click", "#btn-edit", function () {
-    //     indexEdit = layer.open({
-    //         type: 1,
-    //         area: ['500px', '250px'],
-    //         title: '修改文章分类',
-    //         content: $("#dialog-edit").html()
-    //     });
-    //     let id = $(this).attr('data-id')
-    //     $.ajax({
-    //         method: "GET",
-    //         url: '/my/article/cates/' + id,
-    //         success: function (res) {
-    //             // console.log(res);
-    //             form.val('fit', res.data)
-    //         }
-    //     })
 
-    //     // 将修改的信息上传至服务器
-    //     $("body").on("submit", "#form-edit", function (e) {
-    //         e.preventDefault()
-    //         $.ajax({
-    //             method: "POST",
-    //             url: "/my/article/updatecate",
-    //             data: $(this).serialize(),
-    //             success: function (res) {
-    //                 if (res.status !== 0) {
-    //                     return layui.layer.msg("修改失败")
-    //                 } else {
-    //                     layui.layer.msg("修改成功")
-    //                     layer.close(indexEdit)
-    //                     fn()
-    //                 }
-    //             }
-    //         })
-    //     })
-    // })
+    // 点击编辑的时候打开弹出层
+
 
     // 单击删除按钮的时候删除当前的文章
     $("body").on("click", ".removebtn", function () {
+        // 获取当前删除按钮的length
+        let len = $(this).length
         // alert(1)
         let id = $(this).attr('data-id')
         // layui提供的模板
@@ -164,13 +130,40 @@ $(function () {
                     }
                     layer.msg('删除分类成功！')
                     layer.close(index)
+
+                    if (len == 1) {
+                        q.pagenum = q.pagenum == 1 ? 1 : pagenum--
+                    }
                     fn()
                 }
             })
         })
     })
+    $("tbody").on("click", "#btn-edit", function () {
+        // location.href = 'atrcle_pub.html?id=' + $(this).attr('data-id')
+        location.href = 'atrcle_pub.html?id=' + $(this).attr('data-id')
+
+        $.ajax({
+            method: "POST",
+            url: "/my/article/add",
+            // data: fd,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                console.log(res);
+                if (res.status !== 0) {
+                    return layer.msg("修改文章失败")
+                } else {
+                    layer.msg("修改文章成功")
+                    form.val(res.data)
+                    // location.href = 'article_list.html'
+                }
+            }
+        })
 
 
+
+    })
 
 
 

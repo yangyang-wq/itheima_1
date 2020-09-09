@@ -48,13 +48,13 @@ $(function () {
                 avatar: dataURL
             },
             success: function (res) {
-                console.log(res);
+                // console.log(res);
                 if (res.status !== 0) {
                     return layui.layer.msg("更换头像失败")
                 } else {
                     layui.layer.msg("更换头像成功")
                     // window.parent.getUserInfo()
-                    console.log(window.parent);
+                    // console.log(window.parent);
                 }
             }
         })

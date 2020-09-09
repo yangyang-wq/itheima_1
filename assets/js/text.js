@@ -42,6 +42,7 @@ $(function () {
             }
         })
     })
+    
     // 单击编辑按钮添加点击事件
     let indexEdit = null
     // 点击编辑的时候打开弹出层
