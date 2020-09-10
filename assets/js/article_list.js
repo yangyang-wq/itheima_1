@@ -108,11 +108,6 @@ $(function () {
             });
         });
     }
-
-
-    // 点击编辑的时候打开弹出层
-
-
     // 单击删除按钮的时候删除当前的文章
     $("body").on("click", ".removebtn", function () {
         // 获取当前删除按钮的length
@@ -130,7 +125,6 @@ $(function () {
                     }
                     layer.msg('删除分类成功！')
                     layer.close(index)
-
                     if (len == 1) {
                         q.pagenum = q.pagenum == 1 ? 1 : pagenum--
                     }
@@ -139,30 +133,24 @@ $(function () {
             })
         })
     })
-    $("tbody").on("click", "#btn-edit", function () {
-        // location.href = 'atrcle_pub.html?id=' + $(this).attr('data-id')
-        location.href = 'atrcle_pub.html?id=' + $(this).attr('data-id')
-
-        $.ajax({
-            method: "POST",
-            url: "/my/article/add",
-            // data: fd,
-            contentType: false,
-            processData: false,
-            success: function (res) {
-                console.log(res);
-                if (res.status !== 0) {
-                    return layer.msg("修改文章失败")
-                } else {
-                    layer.msg("修改文章成功")
-                    form.val(res.data)
-                    // location.href = 'article_list.html'
-                }
-            }
-        })
 
 
+    $("body").on("click", "#btn-edit", function () {
+        let id = $(this).attr('data-id')
+        location.href = 'atrcle_pub.html?id=' + id
 
+        
+        // $.ajax({
+        //     method: "GET",
+        //     url: '/my/article/' + id,
+        //     success: function (res) {
+        //         if (res.status !== 0) {
+        //             return layer.msg("获取文章失败")
+        //         } else {
+        //             console.log(res);
+        //         }
+        //     }
+        // })
     })
 
 

@@ -56,7 +56,7 @@ $(function () {
     $("#draftBtn").on("click", function () {
         art_state = '草稿'
     })
-
+    // 监听表单的提交事件
     $("#form-pub").on("submit", function (e) {
         e.preventDefault()
         // 快速生成一个formdata表单对象,注意 formdata里面只接受原生参数传值不接jq的方法
