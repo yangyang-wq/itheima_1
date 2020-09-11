@@ -96,4 +96,39 @@ $(function () {
             }
         })
     }
+
+
+    let articleId = window.location.search.split("=")[1]
+    console.log(articleId);
+    $.ajax({
+        method: "get",
+        url: "/my/article/" + articleId,
+        data: {
+            id: articleId
+        },
+        success: function (res) {
+            console.log(res);
+            if (res.status == 0) {
+                $("[name=title]").val(res.data.title)
+                $("[name=content]").val(res.data.content)
+                // cover_img
+                $image
+                    .cropper('getCroppedCanvas', {
+                        // 创建一个 Canvas 画布
+                        width: 400,
+                        height: 280
+                    })
+                    .toBlob(function (blob) {
+                        // 将 Canvas 画布上的内容，转化为文件对象
+                        // 得到文件对象后，进行后续的操作
+                        // 5. 将文件对象，存储到 fd 中
+                        fd.append('cover_img', blob)
+                        // 6. 发起 ajax 数据请求
+                        publishArticle(fd)
+                    })
+                $(".cover-box").html(res.data.cover_img)
+            }
+        }
+    })
+
 })
