@@ -97,7 +97,6 @@ $(function () {
         })
     }
 
-
     let articleId = window.location.search.split("=")[1]
     console.log(articleId);
     $.ajax({

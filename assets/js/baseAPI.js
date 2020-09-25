@@ -1,8 +1,8 @@
 //每次调用$.get()  $.post() $.ajax() 会先调用这个函数
 $.ajaxPrefilter(function (options) {
-    options.url = 'http://ajax.frontend.itheima.net' + options.url
+    options.url = 'http://127.0.0.1:3000' + options.url
     console.log(options.url);
-    
+
     // 判断请求接口是否有权限限制
     if (options.url.indexOf('/my/')) {
         options.headers = {
